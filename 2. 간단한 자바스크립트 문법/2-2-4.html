@@ -1,0 +1,31 @@
+<!-- 호이스팅 -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Hoisting Example</title>
+    <script>
+        // var는 선언만 먼저 끌어올려짐(hoisting), 값은 undefined
+        console.log('oldVar :', oldVar); // undefined
+        var oldVar = 42;
+
+        // let/const는 TDZ(Temporal Dead Zone) 때문에 에러 발생
+        // (선언 전에 접근 시 ReferenceError)
+        try {
+            console.log('newLet :', newLet); // 에러 발생
+        } catch (e) {
+            console.log('newLet 접근 시 에러:', e.message);
+        }
+        let newLet = 99;
+
+        // 결론:
+        // var는 예전 방식이라 잘 안 씀
+        // let/const로 선언하는 게 최신 방식
+        // let은 값 변경 가능
+        // const는 재할당 불가
+    </script>
+</head>
+<body>
+
+</body>
+</html>

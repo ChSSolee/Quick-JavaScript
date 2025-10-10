@@ -1,0 +1,29 @@
+<!-- 스코프(범위) 예제 -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Scope Example</title>
+    <script>
+        function checkVarScope() {
+            if (true) {
+                var fruit = 'apple';
+            }
+            console.log('fruit (var) :', fruit); // 'apple'
+        }
+
+        function checkLetScope() {
+            if (true) {
+                let vegetable = 'carrot';
+            }
+            console.log('vegetable (let) :', vegetable); // ReferenceError
+        }
+
+        checkVarScope();
+        checkLetScope();
+    </script>
+</head>
+<body>
+
+</body>
+</html>

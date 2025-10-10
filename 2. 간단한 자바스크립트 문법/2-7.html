@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Sorting Examples</title>
+    <script>
+        // 1. 문자열 배열 정렬 (기본: 알파벳순)
+        const animals = ['giraffe', 'cat', 'bat'];
+        const animalsSorted = [...animals].sort();
+        console.log('------ 문자열 배열 정렬 ------');
+        console.log('원본:', animals); 
+        console.log('정렬:', animalsSorted); // ['bat', 'cat', 'giraffe']
+        
+        // 2. 숫자 배열 정렬
+        const nums = [30, 7, 12, 100];
+        // (a) 기본 정렬 (문자열 기준이므로 의도와 다르게 됨)
+        const numsWrong = [...nums].sort();
+        console.log('------ 숫자 배열 정렬 (잘못된 예) ------');
+        console.log('원본:', nums);
+        console.log('정렬:', numsWrong); // [100, 12, 30, 7]
+
+        // (b) 숫자 오름차순 정렬 (올바른 예)
+        const numsAsc = [...nums].sort((a, b) => a - b);
+        console.log('------ 숫자 배열 오름차순 정렬 ------');
+        console.log('원본:', nums);
+        console.log('정렬:', numsAsc); // [7, 12, 30, 100]
+
+        // (c) 숫자 내림차순 정렬
+        const numsDesc = [...nums].sort((a, b) => b - a);
+        console.log('------ 숫자 배열 내림차순 정렬 ------');
+        console.log('원본:', nums);
+        console.log('정렬:', numsDesc); // [100, 30, 12, 7]
+
+        // 3. 객체 배열 정렬 (score 기준 오름차순)
+        const users = [
+            { id: 1, name: 'Olive', score: 84 },
+            { id: 2, name: 'Sam', score: 57 },
+            { id: 3, name: 'Mina', score: 91 }
+        ];
+        const usersByScore = [...users].sort((a, b) => a.score - b.score);
+        console.log('------ 객체 배열 정렬 (score 오름차순) ------');
+        console.log('원본:', users);
+        console.log('정렬:', usersByScore);
+
+        // 4. 객체 배열 정렬 (이름 기준 내림차순)
+        const usersByNameDesc = [...users].sort((a, b) => b.name.localeCompare(a.name));
+        console.log('------ 객체 배열 정렬 (name 내림차순) ------');
+        console.log('정렬:', usersByNameDesc);
+
+    </script>
+</head>
+<body>
+</body>
+</html>

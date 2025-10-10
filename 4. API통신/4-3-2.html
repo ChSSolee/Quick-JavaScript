@@ -1,0 +1,43 @@
+<!--
+
+API[1] 에서 받은 데이터로
+API[2] 호출하는 것
+
+async await 로 하면 가독성이 좋음
+
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>fetch() - async/await 순차적 호출</title>
+</head>
+<body>
+<h2>fetch() - 여러 API 순차 호출 (async/await)</h2>
+<button id="loadBtn">데이터 가져오기</button>
+<pre id="result"></pre>
+
+<script>
+    document.getElementById('loadBtn').addEventListener('click', async () => {
+        const resultEl = document.getElementById('result');
+        try {
+            // 1. 첫 번째 API 호출
+            const todoRes = await fetch('https://jsonplaceholder.typicode.com/todos/5');
+            if (!todoRes.ok) throw new Error('TODO 요청 실패: ' + todoRes.status);
+            const todo = await todoRes.json();
+
+            // 2. userId로 두 번째 API 호출
+            const userRes = await fetch(`https://jsonplaceholder.typicode.com/users/${todo.userId}`);
+            if (!userRes.ok) throw new Error('USER 요청 실패: ' + userRes.status);
+            const user = await userRes.json();
+
+            // 3. 결과 합쳐서 출력
+            resultEl.textContent = `할일: ${todo.title}\n작성자: ${user.name}\n\n${JSON.stringify(todo, null, 2)}`;
+        } catch (error) {
+            resultEl.textContent = "에러 발생: " + error;
+        }
+    });
+</script>
+</body>
+</html>

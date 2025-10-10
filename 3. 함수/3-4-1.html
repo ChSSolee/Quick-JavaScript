@@ -1,0 +1,35 @@
+<!-- 
+import export
+
+자바스크립트에서 외부 파일(모듈)로 코드를 나눠서 import/export로 불러오려면
+반드시 웹서버(예: http-server, Live Server 등)로 파일을 제공.
+그렇지 않으면 브라우저가 보안상 파일을 막아서 import/export가 동작하지 않음
+
+npm install -g http-server
+http-server
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>import/export test 함수 예제</title>
+    <script type="module">
+        // add, subtract, test 모두 import
+        import { add, subtract, test } from './3_4_1.js';
+        
+        // 함수 실행
+        console.log(add(3, 7));       // 10
+        console.log(subtract(10, 4)); // 6
+
+        // 1. 함수 실행
+        test(); // 콘솔: "test function"
+
+        // 2. 함수 참조 (실행 X)
+        const myFn = test;
+        myFn(); // 콘솔: "test function" (이때 실제 실행)
+    </script>
+</head>
+<body>
+</body>
+</html>

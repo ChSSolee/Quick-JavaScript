@@ -1,0 +1,50 @@
+<!--
+
+API[1] 에서 받은 데이터로
+API[2] 호출하는 것
+
+fetch then으로 하면 가독성이 떨어짐
+
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>fetch() - then 체인 순차 호출</title>
+</head>
+<body>
+<h2>fetch() - 여러 API 순차 호출 (then)</h2>
+<button id="loadBtn">데이터 가져오기</button>
+<pre id="result"></pre>
+
+<script>
+    document.getElementById('loadBtn').addEventListener('click', () => {
+        const resultEl = document.getElementById('result');
+        fetch('https://jsonplaceholder.typicode.com/todos/5')
+            .then(todoRes => {
+                if (!todoRes.ok) throw new Error('TODO 요청 실패: ' + todoRes.status);
+                return todoRes.json();
+            })
+            .then(todo => {
+                // todo.userId로 두 번째 fetch!
+                return fetch(`https://jsonplaceholder.typicode.com/users/${todo.userId}`)
+                    .then(userRes => {
+                        if (!userRes.ok) throw new Error('USER 요청 실패: ' + userRes.status);
+                        return userRes.json();
+                    })
+                    .then(user => {
+                        // todo, user 둘 다 필요하므로 객체로 묶어서 반환
+                        return { todo, user };
+                    });
+            })
+            .then(({ todo, user }) => {
+                resultEl.textContent = `할일: ${todo.title}\n작성자: ${user.name}\n\n${JSON.stringify(todo, null, 2)}`;
+            })
+            .catch(error => {
+                resultEl.textContent = "에러 발생: " + error;
+            });
+    });
+</script>
+</body>
+</html>

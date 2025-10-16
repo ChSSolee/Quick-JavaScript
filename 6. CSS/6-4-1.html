@@ -1,0 +1,46 @@
+<!-- 
+
+CSS
+
+반응형(모바일뷰)는 어떻게하지? 
+
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>반응형 없는 카드 리스트</title>
+  <style>
+    .card-list {
+      display: grid;
+      grid-template-columns: 1fr; /* 항상 1컬럼 */
+      gap: 24px;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    .card {
+      background: #fff;
+      border-radius: 16px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+      padding: 24px;
+    }
+  </style>
+</head>
+<body style="background:#f7fafc;">
+  <div class="card-list">
+    <div class="card">
+      <strong>공지사항</strong>
+      <div>서비스 점검 안내</div>
+    </div>
+    <div class="card">
+      <strong>이벤트</strong>
+      <div>여름맞이 할인</div>
+    </div>
+    <div class="card">
+      <strong>업데이트</strong>
+      <div>새 기능 출시</div>
+    </div>
+  </div>
+</body>
+</html>

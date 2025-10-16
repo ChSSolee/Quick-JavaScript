@@ -1,0 +1,56 @@
+<!-- 
+
+모바일뷰를 고려해서
+
+media 화면넓이가 어떻게 되면 어떻게해라
+
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>반응형 카드 리스트</title>
+  <style>
+    .card-list {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 24px;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    .card {
+      background: #fff;
+      border-radius: 16px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+      padding: 24px;
+    }
+    @media (min-width: 640px) {
+      .card-list {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+    @media (min-width: 768px) {
+      .card-list {
+        grid-template-columns: 1fr 1fr 1fr;
+      }
+    }
+  </style>
+</head>
+<body style="background:#f7fafc;">
+  <div class="card-list">
+    <div class="card">
+      <strong>공지사항</strong>
+      <div>서비스 점검 안내</div>
+    </div>
+    <div class="card">
+      <strong>이벤트</strong>
+      <div>여름맞이 할인</div>
+    </div>
+    <div class="card">
+      <strong>업데이트</strong>
+      <div>새 기능 출시</div>
+    </div>
+  </div>
+</body>
+</html>
